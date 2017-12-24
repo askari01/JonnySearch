@@ -1,6 +1,8 @@
 # JonnySearch
 A search utility for macOS.
 
+![Screenshot](/Screenshot.png)
+
 ## Download
 [Latest release](https://github.com/JunyuKuang/JonnySearch/releases/)
 
