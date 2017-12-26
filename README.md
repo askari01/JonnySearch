@@ -25,7 +25,7 @@ A search utility for macOS.
 - Command + T: translate on Google Translate
 - Command + S: search on Stack Overflow
 - Command + G: search on GitHub
-- Command + G: search on Baidu
+- Command + B: search on Baidu
 - Return: search on Google
 
 ## Notice
