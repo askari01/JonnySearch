@@ -18,7 +18,15 @@ class ViewController: NSViewController {
         
         textField.backgroundColor = .clear
         textField.cell?.focusRingType = .none // remove blue border
-        textField.placeholderAttributedString = NSAttributedString(string: "Search...", attributes: [.foregroundColor : #colorLiteral(red: 0.6039215686, green: 0.6274509804, blue: 0.6274509804, alpha: 1), .font : NSFont.systemFont(ofSize: 32)])
+        if #available(OSX 10.11, *) {
+            textField.placeholderAttributedString = NSAttributedString(string: "Search...", attributes: [.foregroundColor : #colorLiteral(red: 0.6039215686, green: 0.6274509804, blue: 0.6274509804, alpha: 1), .font : NSFont.systemFont(ofSize: 32, weight: .light)])
+        } else {
+            // Fallback on earlier versions
+            textField.placeholderAttributedString = NSAttributedString(string: "Search...", attributes: [.foregroundColor : #colorLiteral(red: 0.6039215686, green: 0.6274509804, blue: 0.6274509804, alpha: 1), .font : NSFont.systemFont(ofSize: 32)])
+        }
+        
+        // UItweak
+        self.view.makeCorner(withRadius: 8)
         
 		NotificationCenter.default.addObserver(self, selector: #selector(windowDidResignKey), name: NSWindow.didResignKeyNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(windowDidBecomeKey), name: NSWindow.didBecomeKeyNotification, object: nil)
@@ -160,4 +168,12 @@ private extension String {
         return containsChinese
     }
     
+}
+
+extension NSView {
+    func makeCorner(withRadius radius: CGFloat) {
+        self.layer?.cornerRadius = radius
+        self.layer?.masksToBounds = true
+        self.layer?.isOpaque = false
+    }
 }
